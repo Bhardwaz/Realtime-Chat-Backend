@@ -1,3 +1,4 @@
+import express from "express";
 import dotenv from "dotenv";
 dotenv.config({
   path: "./.env",
@@ -6,6 +7,7 @@ import http from "http";
 import connectDB from "./database/connectDB.js";
 import { app } from "./app.js";
 import { Server } from "socket.io";
+import path from "path";
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -48,3 +50,13 @@ connectDB()
   .catch((err) => {
     console.log("MONGO db connection failed !!! ", err);
   });
+
+// ------------------Deployment Code-----------------------
+const __dirname1 = path.resolve();
+if (process.env.NODE_ENV === "productio") {
+  app.use(express.static(path.join(__dirname1, "/client/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname1, "client", "dist", "index.html"));
+  });
+}
+// ------------------Deployment Code-----------------------
