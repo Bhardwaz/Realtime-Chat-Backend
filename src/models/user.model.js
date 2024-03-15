@@ -50,22 +50,26 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 
 userSchema.methods.generateAccessToken = function () {
   console.log("coming here", this._id);
+
   console.log(process.env.ACCESS_TOKEN_SECRET, "ACCESS_TOKEN_SECRET");
+
   console.log(process.env.ACCESS_TOKEN_EXPIRY, "ACCESS_TOKEN_EXPIRY");
 
-  console.log(
-    jwt.sign(
-      {
-        id: this._id,
-        email: this._email,
-      },
-      process.env.ACCESS_TOKEN_SECRET,
-      {
-        expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
-      }
-    ),
-    "into generateAccessToken"
+  console.log(process.env.REFRESH_TOKEN_SECRET, "REFRESH_TOKEN_SECRET");
+
+  console.log(process.env.REFRESH_TOKEN_EXPIRY, "REFRESH_TOKEN_EXPIRY");
+
+  const accessTokenSign = jwt.sign(
+    {
+      id: this._id,
+      email: this._email,
+    },
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+    }
   );
+  console.log(accessTokenSign, "accessToken Sign");
   return jwt.sign(
     {
       id: this._id,
@@ -79,7 +83,7 @@ userSchema.methods.generateAccessToken = function () {
 };
 
 userSchema.methods.generateRefreshToken = function () {
-  console.log();
+  console.log("Function call of refresh token");
   console.log(
     jwt.sign(
       {
