@@ -49,6 +49,7 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 };
 
 userSchema.methods.generateAccessToken = function () {
+  console.log(this, "this object");
   console.log("coming here", this._id);
   console.log("coming here email", this._email);
 
