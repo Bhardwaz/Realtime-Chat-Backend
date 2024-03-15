@@ -1,7 +1,6 @@
 import expres from "express";
 const app = expres();
 import cors from "cors";
-import cookieParser from "cookie-parser";
 import { errorHandler, notFound } from "./misc/error.middleware.js";
 // import router
 import userRouter from "./routes/user.routes.js";
