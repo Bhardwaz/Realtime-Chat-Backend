@@ -6,16 +6,12 @@ import { fileUploadCloudinary } from "../utils/cloudinary.js";
 
 async function generateAccessRefreshToken(userId) {
   try {
-    console.log("9");
     const user = await User.findById(userId);
-    console.log("11");
+
     const accessToken = user.generateAccessToken();
-    console.log(accessToken);
-    console.log("13");
+
     const refreshToken = user.generateRefreshToken();
-    console.log("15");
-    console.log(accessToken, "accessToken");
-    console.log(refreshToken, "refreshToken");
+
     user.refreshToken = refreshToken;
 
     await user.save({ validateBeforeSave: false });

@@ -49,48 +49,25 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 };
 
 userSchema.methods.generateAccessToken = function () {
-  const accessTokenSign = jwt.sign(
-    {
-      id: this._id,
-    },
-    process.env.ACCESS_TOKEN_SECRET,
-    {
-      expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
-    }
-  );
-  console.log(accessTokenSign, "accessToken Sign");
   return jwt.sign(
     {
       id: this._id,
     },
-    process.env.ACCESS_TOKEN_SECRET,
+    "iwillbeagreatprogrammer",
     {
-      expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+      expiresIn: "30d",
     }
   );
 };
 
 userSchema.methods.generateRefreshToken = function () {
-  console.log("Function call of refresh token");
-  console.log(
-    jwt.sign(
-      {
-        id: this._id,
-      },
-      process.env.REFRESH_TOKEN_SECRET,
-      {
-        expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
-      }
-    ),
-    "into generateToken"
-  );
   return jwt.sign(
     {
       id: this._id,
     },
-    process.env.REFRESH_TOKEN_SECRET,
+    "iwillbeagreatprogrammer",
     {
-      expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
+      expiresIn: "30d",
     }
   );
 };
