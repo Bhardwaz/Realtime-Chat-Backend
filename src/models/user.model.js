@@ -50,8 +50,8 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 
 userSchema.methods.generateAccessToken = function () {
   console.log("coming here", this._id);
-  console.log(ACCESS_TOKEN_SECRET, "ACCESS_TOKEN_SECRET");
-  console.log(ACCESS_TOKEN_EXPIRY, "ACCESS_TOKEN_EXPIRY");
+  console.log(process.env.ACCESS_TOKEN_SECRET, "ACCESS_TOKEN_SECRET");
+  console.log(process.env.ACCESS_TOKEN_EXPIRY, "ACCESS_TOKEN_EXPIRY");
 
   console.log(
     jwt.sign(
