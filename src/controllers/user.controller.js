@@ -10,6 +10,7 @@ async function generateAccessRefreshToken(userId) {
     const user = await User.findById(userId);
     console.log("11");
     const accessToken = user.generateAccessToken();
+    console.log(accessToken);
     console.log("13");
     const refreshToken = user.generateRefreshToken();
     console.log("15");
