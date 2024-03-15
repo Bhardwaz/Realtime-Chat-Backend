@@ -6,6 +6,8 @@ import { errorHandler, notFound } from "./misc/error.middleware.js";
 import userRouter from "./routes/user.routes.js";
 import chatRouter from "./routes/chat.routes.js";
 import messageRouter from "./routes/message.routes.js";
+import dotenv from "dotenv";
+dotenv.config();
 // middleware
 app.use(
   cors({
