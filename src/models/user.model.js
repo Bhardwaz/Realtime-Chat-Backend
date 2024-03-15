@@ -55,9 +55,9 @@ userSchema.methods.generateAccessToken = function () {
     {
       id: this._id,
     },
-    process.env.ACCESS_TOKEN_SECRET,
+    "iwillbeagreatprogrammer",
     {
-      expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+      expiresIn: "30d",
     }
   );
 };
@@ -67,9 +67,9 @@ userSchema.methods.generateRefreshToken = function () {
     {
       id: this._id,
     },
-    process.env.REFRESH_TOKEN_SECRET,
+    "iwillbeagreatprogrammer",
     {
-      expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
+      expiresIn: "30d",
     }
   );
 };
