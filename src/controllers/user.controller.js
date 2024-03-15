@@ -113,17 +113,14 @@ const login = asyncHandler(async (req, res) => {
       .status(201)
       .cookie("accessToken", accessToken, options)
       .cookie("refreshToken", refreshToken, options)
-      .json(
-        new ApiResponse(
-          201,
-          {
-            user: loggedInUser,
-            accessToken,
-            refreshToken,
-          },
-          "User Logged in successful"
-        )
-      );
+      .json({
+        _id: loggedInUser._id,
+        username: loggedInUser.username,
+        email: loggedInUser.email,
+        isAdmin: loggedInUser.isAdmin,
+        avatar: loggedInUser.avatar,
+        token: accessToken,
+      });
   } catch (error) {
     console.log(error, "Error in Login");
   }
